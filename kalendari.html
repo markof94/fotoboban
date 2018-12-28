@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html"; charset=UTF-8">
+    <title>Kalendari</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	<script src="script.js"></script>
+	
+	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css" rel="stylesheet" />  <style>
+    body { margin:0; padding:0; }
+	</style>
+
+	<link rel="icon" href="fblogoicon.png">
+
+</head>
+​
+<body>
+
+<!-- SNOWFLAKES -->
+<style>
+/* customizable snowflake styling */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
+</style>
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+  <div class="snowflake">
+    ❅
+  </div>
+  <div class="snowflake">
+    ❆
+  </div>
+</div>
+
+<!-- SNOWFLAKES END -->
+
+<!-- nav bar -->
+<nav class = "navbar navbar-inverse border-down">
+	<div class = "container">
+		<div class = "navbar-header">
+			<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#myNavbar">
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+			<span class = "icon-bar"></span>
+			</button>
+			
+		</div>
+		<div class = "collapse navbar-collapse" id = "myNavbar">
+			<ul class = "nav navbar-nav menu-buttons">
+				<li class = "menu-button right-border "><a  class = "gray-text" href="index.html">Početna</a></li>
+				<li class = "menu-button right-border"><a class = "gray-text" href = "galerija.html">Galerija</a></li>
+				<li class = "active menu-button right-border"><a class = "gray-text" href = "kalendari.html">Kalendari</a></li>
+				<li class = "menu-button right-border"><a class = "gray-text" href = "cenovnik.html">Cenovnik</a></li>
+				<li class = "menu-button right-border"><a class = "gray-text" href = "porucite.html">Poručite fotografije</a></li>
+				<li class = "menu-button"><a class = "gray-text" href = "kontakt.html">Kontakt</a></li>
+			</ul>
+			
+			<div class = "">
+				<a href = "https://www.facebook.com/fotoboban012" target = "_blank"><img src = "facebook.png" class = "menu-social-button wiggle"></a>
+				<a href = "https://www.instagram.com/fotobobanpo/"><img src = "instagram.png" class = "menu-social-button wiggle"></a>
+			</div>
+			
+		</div>
+	</div>
+</nav>
+
+<!--end of Navigation bar-->
+
+
+<div class = "container">
+
+	<div class = "row naslov text-center border-down">
+		KALENDARI
+	</div>
+
+	<div class = "row podnaslov text-center">
+		Ovde možete videti koji okviri su dostupni za izradu kalendara sa Vašim fotografijama
+	</div>
+
+	<div class = "row text-center natpis-24">
+		Ukoliko <a href = "porucite.html">poručujete kalendare</a>, u poruci naglasite koji redni broj okvira za kalendar želite.
+	</div>
+
+	<div class = "container galerija-container border-down" name = "svecanosti">
+
+
+		<div class = "row row-galerija">
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">1</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+					
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">2</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">3</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">4</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+
+			
+		
+		</div>
+	
+	
+		<div class = "row row-galerija">
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">5</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+					
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">6</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">7</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+			<div class = "col-xs-6 col-sm-3 scaler">
+				<div>
+					<b><p class = "text-center kalendari-natpis">8</p></b>
+					<a href = "#" class = "" data-toggle = "modal" data-target = "#lightbox">
+						<img class = "img-thumb" src = "svadba.jpg" alt = "...">
+					</a>
+					<img class = "img-thumb-kalendar" src = "kalendar-dani.jpg" alt = "...">
+				</div>
+			</div>
+
+
+			
+		
+		</div>
+
+</div>
+
+</div> 
+
+
+
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+​
+</body>
+
+<footer class = "container text-center gray-text">
+
+	<div class = "row">
+	
+		<div class = "col-sm-4 text-center logo-container">
+			<img src = "fblogo.png" class = "kontakt-logo">
+		</div>
+		
+		
+		<div class = "col-sm-4 text-left">
+			<p class = "kontakt-title">Kontakt</p>
+			
+			<div class = "border-up kontakt-text">
+			<i class = "glyphicon glyphicon-envelope" style = "color: var(--my-blue); font-size: 20px; margin-right: 8px; margin-bottom: 16px; margin-top: 16px;"></i>
+			fotoboban1@gmail.com
+			
+			<p>
+			<i class = "glyphicon glyphicon-earphone" style = "font-size: 20px; color: var(--my-blue); margin-right: 8px;"></i>
+			012/520-000 --- 063/80-26-882
+			</p>
+			
+			<p>
+			<i class = "glyphicon glyphicon-map-marker" style = "font-size: 20px; color: var(--my-blue); margin-right: 8px;"></i>
+			Čede Vasovica 4, 12000 Požarevac
+			</p>
+			
+			<p>
+			<i class = "glyphicon glyphicon-time" style = "font-size: 20px; color: var(--my-blue); margin-right: 8px;"></i>
+			Ponedeljak-Subota: 08:00h - 20:00h
+			<p style = "line-height: 8px; margin-left: 31px;">Nedelja: 08:00h - 14:00h</p>
+			</p>
+			
+			</div>
+			
+		</div>
+		
+		<div class = "col-sm4 text-left">
+		
+			<div id='map' style='width: 33.3%; height: 240px;'></div>
+				<script>
+					mapboxgl.accessToken = "pk.eyJ1IjoibWFya29mOTQiLCJhIjoiY2pwdG5tbGVuMDdkcTQycDMzb2oyNTB6YyJ9.wK5kd9qZc3CvTRBibtEYcw";
+
+					/* Map: This represents the map on the page. */
+					var map = new mapboxgl.Map({
+					  container: "map",
+					  style: "mapbox://styles/mapbox/streets-v10",
+					  zoom:15.2,
+					  center: [21.18263,44.61749]
+					});
+
+					map.on("load", function () {
+					  /* Image: An image is loaded and added to the map. */
+					  map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+						  if (error) throw error;
+						  map.addImage("custom-marker", image);
+						  /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+						  map.addLayer({
+							id: "markers",
+							type: "symbol",
+							/* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+							source: {
+							  type: "geojson",
+							  data: {
+								type: "FeatureCollection",
+								features:[{"type":"Feature","geometry":{"type":"Point","coordinates":[21.182691349125747,44.617540864795984]}}]}
+							},
+							layout: {
+							  "icon-image": "custom-marker",
+							}
+						  });
+						});
+					});
+				</script>
+			
+		</div>
+		
+	
+	</div>
+	
+	<div class = "row credits-bottom">
+		Designed by <b>Marko Fajler</b>
+	</div>
+</footer>
+
+
+​
+</html>
